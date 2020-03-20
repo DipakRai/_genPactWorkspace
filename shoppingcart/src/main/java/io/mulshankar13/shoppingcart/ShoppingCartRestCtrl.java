@@ -20,11 +20,23 @@ public class ShoppingCartRestCtrl {
 	@Autowired
 	private CartServiceImpl cartService;
 
-	@GetMapping("/items")
+	@GetMapping(path = "/items",params = "version=1")
 	public String getAllItems() {
 		logger.debug(" Start: Getting all products.... ");
 		String products = cartService.getProducts();
 		return products;
+	}
+	
+	/**
+	 * Same Resource URI versioned to return the count
+	 * @return
+	 */
+	@GetMapping(path = "/items",params = "version=2")
+	public int getAllItemsCount() {
+		logger.debug(" Start: getAllItemsSorted .... ");
+		int count = cartService.getProductsCount();
+		logger.debug(" End: getAllItemsSorted .... ");
+		return count;
 	}
 
 	@GetMapping("/customers")

@@ -3,7 +3,9 @@ package io.mulshankar13.shoppingcart;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.google.gson.Gson;
 
@@ -24,6 +26,10 @@ public class CartServiceImpl {
 		Gson gson  = new Gson();
 		String itemsJson =gson.toJson(items);
 		return itemsJson;
+	}
+	
+	public int getProductsCount() {
+		return (int) itemRepository.count();
 	}
 	
 

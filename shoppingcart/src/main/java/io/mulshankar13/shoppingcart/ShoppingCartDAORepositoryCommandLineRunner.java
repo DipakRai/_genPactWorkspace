@@ -29,10 +29,10 @@ public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRu
 		customerRepository.save(customer2);
 		log.info("Customer created successfully...." + customer2.getId());
 
-		Item item = new Item("Angles and Demons", 510,51);
+		Item item = new Item("Xangles", 510,51);
 		itemRepository.save(item); 
 		log.info("itemId" + item.getId());
-		Item item2 = new Item("Les Miserables", 601,61);
+		Item item2 = new Item("WONKS", 601,61);
 		itemRepository.save(item2);
 		log.info("itemId2:" + item2.getId());
 	}
