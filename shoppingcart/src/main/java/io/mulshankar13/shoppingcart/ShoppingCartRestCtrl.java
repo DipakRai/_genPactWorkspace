@@ -18,10 +18,10 @@ public class ShoppingCartRestCtrl {
 	private final Logger logger = LoggerFactory.getLogger(ShoppingCartRestCtrl.class);
 
 	@Autowired
-	private CartServiceImpl cartService;
+	private CartService cartService;
 
-	@GetMapping(path = "/items",params = "version=1")
-	public String getAllItems() {
+	@GetMapping(path = "/items1",params = "version=1")
+	public String getAllItemsInStore() {
 		logger.debug(" Start: Getting all products.... ");
 		String products = cartService.getProducts();
 		return products;
@@ -31,8 +31,8 @@ public class ShoppingCartRestCtrl {
 	 * Same Resource URI versioned to return the count
 	 * @return
 	 */
-	@GetMapping(path = "/items",params = "version=2")
-	public int getAllItemsCount() {
+	@GetMapping(path = "/items1",params = "version=2")
+	public int getAllItemsInStoreCount() {
 		logger.debug(" Start: getAllItemsSorted .... ");
 		int count = cartService.getProductsCount();
 		logger.debug(" End: getAllItemsSorted .... ");

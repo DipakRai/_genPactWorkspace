@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import io.mulshankar13.model.CartOrder;
 import io.mulshankar13.model.Customer;
 import io.mulshankar13.model.Item;
 
@@ -19,6 +20,9 @@ public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRu
 
 	@Autowired
 	private ItemRepository itemRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -29,12 +33,17 @@ public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRu
 		customerRepository.save(customer2);
 		log.info("Customer created successfully...." + customer2.getId());
 
-		Item item = new Item("Xangles", 510,51);
+		Item item = new Item("Les Miserables", 510,51);
 		itemRepository.save(item); 
 		log.info("itemId" + item.getId());
-		Item item2 = new Item("WONKS", 601,61);
+		Item item2 = new Item("War and Peace", 601,61);
 		itemRepository.save(item2);
 		log.info("itemId2:" + item2.getId());
+		
+		CartOrder cartOrder = new CartOrder(1000);
+		orderRepository.save(cartOrder);
+		CartOrder cartOrder2 = new CartOrder(2000);
+		orderRepository.save(cartOrder2);
 	}
 
 }

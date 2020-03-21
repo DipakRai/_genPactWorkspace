@@ -13,7 +13,7 @@ import io.mulshankar13.model.Customer;
 import io.mulshankar13.model.Item;
 
 @Service
-public class CartServiceImpl {
+public class CartService {
 	
 	@Autowired
 	private ItemRepository itemRepository;
