@@ -15,30 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController("/order")
-public class CartOrderCtrl {
+public class CartOrderRestCtrl {
 
-	private static final Logger logger = LoggerFactory.getLogger(CartOrderCtrl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CartOrderRestCtrl.class);
 	
 	@Autowired
 	private OrderService orderService;
 
-	public CartOrderCtrl() {
+	public CartOrderRestCtrl() {
 
 	}
 
-	@GetMapping(path = "/orders", params = "customerId")
+	@GetMapping(path = "/orders", params = "customerId") //Using RequestParam
 	public String getOrdersByCustomerId(@RequestParam String customerId) {
-		logger.info(" customerId:"+customerId);
+		logger.info("@@#@#$ customerId:"+customerId);
 		String ordersJson = orderService.getOrdersByCustomerId(Long.parseLong(customerId));
 		return ordersJson;
 	}
 	
-	@GetMapping(path = "/orders/open/{custId}")
+	@GetMapping(path = "/orders/open/{customerId}") //Using PathVariable
 	public String getOpenOrdersByCustId(@PathVariable("customerId")long customerId) {
-		orderService.getOpenOrdersByCustId(customerId);
-		return null;
-	}
-	
-	
+		logger.info(" @#@@# customerId "+ customerId);
+		String ordersJson = orderService.getOpenOrdersByCustId(customerId);
+		return ordersJson;
+	}	
 
 }

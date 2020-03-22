@@ -28,6 +28,7 @@ public class OrderService {
 	}
 
 	public String getOpenOrdersByCustId(long customerId) {
+		//orderRepository.findAll(example)
 		return null;
 	}
 }

@@ -11,9 +11,9 @@ import io.mulshankar13.model.Customer;
 import io.mulshankar13.model.Item;
 
 @Component
-public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRunner {
+public class ShoppingcartDAORepositoryCommandLineRunner implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory.getLogger(ShoppingCartDAORepositoryCommandLineRunner.class);
+	private static final Logger log = LoggerFactory.getLogger(ShoppingcartDAORepositoryCommandLineRunner.class);
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -26,13 +26,15 @@ public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRu
 
 	@Override
 	public void run(String... args) throws Exception {
-		Customer customer = new Customer("Sammy", "Bangalore");
-		customerRepository.save(customer);
-		log.info("Customer created successfully...." + customer.getId());
-		Customer customer2 = new Customer("Harry", "Bangalore");
-		customerRepository.save(customer2);
-		log.info("Customer created successfully...." + customer2.getId());
-
+		/*
+		 * Customer customer = new Customer("Sammy", "Bangalore");
+		 * customerRepository.save(customer);
+		 * log.info("Customer created successfully...." + customer.getId()); Customer
+		 * customer2 = new Customer("Harry", "Bangalore");
+		 * customerRepository.save(customer2);
+		 * log.info("Customer created successfully...." + customer2.getId());
+		 */
+		
 		Item item = new Item("Les Miserables", 510,51);
 		itemRepository.save(item); 
 		log.info("itemId" + item.getId());
@@ -40,10 +42,10 @@ public class ShoppingCartDAORepositoryCommandLineRunner implements CommandLineRu
 		itemRepository.save(item2);
 		log.info("itemId2:" + item2.getId());
 		
-		CartOrder cartOrder = new CartOrder(1000);
-		orderRepository.save(cartOrder);
-		CartOrder cartOrder2 = new CartOrder(2000);
-		orderRepository.save(cartOrder2);
+		/*
+		 * CartOrder cartOrder = new CartOrder(1000); orderRepository.save(cartOrder);
+		 * CartOrder cartOrder2 = new CartOrder(2000); orderRepository.save(cartOrder2);
+		 */
 	}
 
 }

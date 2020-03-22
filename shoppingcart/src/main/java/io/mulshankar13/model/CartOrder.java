@@ -5,10 +5,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.SerializedName;
 
 @Entity(name = "cartorder")
 @Table(name = "cartorder")
@@ -17,7 +20,7 @@ public class CartOrder implements Serializable {
 	private static final long serialVersionUID = -8779900999023178004L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 
 	@Column
@@ -33,8 +36,9 @@ public class CartOrder implements Serializable {
 	}
 
 	// TODO List<Item> items
-
-	// TODO Customer customer
+	@ManyToOne(fetch = FetchType.LAZY)
+	@SerializedName(value = "customer")
+	private Customer customer;
 
 	/*
 	 * TODO

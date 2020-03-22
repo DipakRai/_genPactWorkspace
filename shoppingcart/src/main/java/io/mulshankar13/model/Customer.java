@@ -1,12 +1,14 @@
 package io.mulshankar13.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="CUSTOMER")
@@ -16,7 +18,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = -2529070437909716795L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 	
 	public Customer() {
@@ -33,6 +35,9 @@ public class Customer implements Serializable {
 
 	@Column(name="address")
 	private String address;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<CartOrder> orders = new ArrayList<CartOrder>();
 
 	public long getId() {
 		return id;
