@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(name = "cartorder")
@@ -22,6 +24,14 @@ public class CartOrder implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	@Column
 	private long totalValue;
@@ -38,6 +48,8 @@ public class CartOrder implements Serializable {
 	// TODO List<Item> items
 	@ManyToOne(fetch = FetchType.LAZY)
 	@SerializedName(value = "customer")
+	//@JsonIgnore
+	@JsonBackReference
 	private Customer customer;
 
 	/*
@@ -57,6 +69,14 @@ public class CartOrder implements Serializable {
 
 	public long getTotalValue() {
 		return totalValue;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public void setTotalValue(long totalValue) {

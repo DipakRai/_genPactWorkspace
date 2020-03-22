@@ -36,8 +36,8 @@ public class Customer implements Serializable {
 	@Column(name="address")
 	private String address;
 	
-	@OneToMany(mappedBy = "customer")
-	private List<CartOrder> orders = new ArrayList<CartOrder>();
+	//@OneToMany(mappedBy = "customer")
+	//private List<CartOrder> orders = new ArrayList<CartOrder>();
 
 	public long getId() {
 		return id;
