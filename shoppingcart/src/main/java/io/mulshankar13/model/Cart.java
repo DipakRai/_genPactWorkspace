@@ -1,25 +1,27 @@
-/*
- * package io.mulshankar13.model;
- * 
- * import java.io.Serializable;
- * 
- * import javax.persistence.Entity; import javax.persistence.Id; import
- * javax.persistence.JoinColumn; import javax.persistence.OneToOne;
- * 
- * @Entity(name = "Cart") public class Cart implements Serializable{
- * 
- * private static final long serialVersionUID = 6373834658640858131L;
- * 
- * @Id private long id;
- * 
- * 
- * @OneToOne(mappedBy = "cart")
- * 
- * @JoinColumn(name="order_id",nullable=true) private CartOrder order;
- * 
- * @OneToOne(mappedBy = "cart")
- * 
- * @JoinColumn(name="customer_id",nullable = false) private Customer customer;
- * 
- * }
- */
+package io.mulshankar13.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity(name = "cart")
+@Table(name="cart")
+public class Cart implements Serializable {
+
+	private static final long serialVersionUID = 6373834658640858131L;
+
+	@Id
+	@GeneratedValue
+	private long id;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer__id", nullable = false)
+	private Customer customer;
+
+}

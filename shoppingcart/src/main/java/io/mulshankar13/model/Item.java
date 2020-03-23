@@ -8,11 +8,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity(name="ITEM")
-@Table(name="ITEM")
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.google.gson.annotations.SerializedName;
+
+@Entity(name = "ITEM")
+@Table(name = "ITEM")
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 4998189726459489298L;
@@ -20,7 +24,7 @@ public class Item implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	public Item() {
 	}
 
@@ -39,11 +43,19 @@ public class Item implements Serializable {
 
 	@Column(name = "discount")
 	private long discount;
-	
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_order__id")
 	private CartOrder cartOrder;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cart__id")
+	private Cart cart;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@SerializedName(value = "customer")
+	@JsonBackReference
+	private Customer customer;
 
 	public long getId() {
 		return id;
@@ -83,6 +95,14 @@ public class Item implements Serializable {
 
 	public void setCartOrder(CartOrder cartOrder) {
 		this.cartOrder = cartOrder;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override

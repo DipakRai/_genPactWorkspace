@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,11 +21,19 @@ public class ShoppingCartRestCtrl {
 	@Autowired
 	private CartService cartService;
 
+//	@GetMapping(path = "/items1",params = "version=1")
+//	public String getAllItemsInStock() {
+//		logger.debug(" Start: Getting all products.... ");
+//		String products = cartService.getItemsInCart();
+//		return products;
+//	}
+	
 	@GetMapping(path = "/items1",params = "version=1")
-	public String getAllItemsInStore() {
+	public String getAllItemsInCart(@RequestParam String customerId) {
+		System.out.println("@!@!#@!# getAllItemsInCart :"+customerId);
 		logger.debug(" Start: Getting all products.... ");
-		String products = cartService.getProducts();
-		return products;
+		String items = cartService.getItemsInCustomerCart(customerId);
+		return items;
 	}
 	
 	/**
@@ -32,7 +41,7 @@ public class ShoppingCartRestCtrl {
 	 * @return
 	 */
 	@GetMapping(path = "/items1",params = "version=2")
-	public int getAllItemsInStoreCount() {
+	public int getAllItemsInCartCount() {
 		logger.debug(" Start: getAllItemsSorted .... ");
 		int count = cartService.getProductsCount();
 		logger.debug(" End: getAllItemsSorted .... ");

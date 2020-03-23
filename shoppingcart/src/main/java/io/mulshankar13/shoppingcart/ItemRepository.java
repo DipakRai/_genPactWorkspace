@@ -7,5 +7,7 @@ import io.mulshankar13.model.Item;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>{
+	
+	
 
 }

@@ -45,10 +45,8 @@ public class CartOrder implements Serializable {
 
 	}
 
-	// TODO List<Item> items
 	@ManyToOne(fetch = FetchType.LAZY)
 	@SerializedName(value = "customer")
-	//@JsonIgnore
 	@JsonBackReference
 	private Customer customer;
 

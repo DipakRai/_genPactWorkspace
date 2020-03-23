@@ -26,7 +26,7 @@ public class CartService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	public String getProducts() {
+	public String getItemsInCart() {
 		List<Item> items = (List<Item>) itemRepository.findAll();
 		String itemsJson =gson.toJson(items);
 		return itemsJson;
@@ -52,6 +52,12 @@ public class CartService {
 		List<Customer> customers = customerRepository.findAll();
 		String customersJson =gson.toJson(customers);
 		return customersJson;
+	}
+
+	public String getItemsInCustomerCart(String customerId) {
+		List<Item> items = (List<Item>) itemRepository.findAll();
+		String itemsJson =gson.toJson(items);
+		return itemsJson;
 	}
 
 }
