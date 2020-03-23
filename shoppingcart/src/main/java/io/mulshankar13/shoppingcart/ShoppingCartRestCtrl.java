@@ -40,7 +40,7 @@ public class ShoppingCartRestCtrl {
 	/**
 	 * Same Resource URI versioned to return the count
 	 * 
-	 * @return
+	 * @return int
 	 */
 	@GetMapping(path = "v2/items")
 	public int getAllItemsInCartCount() {
