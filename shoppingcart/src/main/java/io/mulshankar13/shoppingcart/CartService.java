@@ -6,12 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import io.mulshankar13.model.Customer;
 import io.mulshankar13.model.Item;
 
 @Service
 public class CartService {
+	
+	static GsonBuilder b = new GsonBuilder();
+	static {
+		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+	}
+	static Gson gson = b.create();
 	
 	@Autowired
 	private ItemRepository itemRepository;
@@ -21,7 +28,6 @@ public class CartService {
 
 	public String getProducts() {
 		List<Item> items = (List<Item>) itemRepository.findAll();
-		Gson gson  = new Gson();
 		String itemsJson =gson.toJson(items);
 		return itemsJson;
 	}
@@ -44,7 +50,6 @@ public class CartService {
 
 	public String getCustomers() {
 		List<Customer> customers = customerRepository.findAll();
-		Gson gson  = new Gson();
 		String customersJson =gson.toJson(customers);
 		return customersJson;
 	}

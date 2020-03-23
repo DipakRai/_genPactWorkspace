@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name="ITEM")
@@ -36,6 +39,11 @@ public class Item implements Serializable {
 
 	@Column(name = "discount")
 	private long discount;
+	
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cart_order__id")
+	private CartOrder cartOrder;
 
 	public long getId() {
 		return id;
@@ -67,6 +75,14 @@ public class Item implements Serializable {
 
 	public void setDiscount(long discount) {
 		this.discount = discount;
+	}
+
+	public CartOrder getCartOrder() {
+		return cartOrder;
+	}
+
+	public void setCartOrder(CartOrder cartOrder) {
+		this.cartOrder = cartOrder;
 	}
 
 	@Override
