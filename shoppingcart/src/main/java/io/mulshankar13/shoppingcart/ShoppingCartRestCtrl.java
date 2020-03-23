@@ -29,7 +29,7 @@ public class ShoppingCartRestCtrl {
 	@Autowired
 	private CartService cartService;
 
-	@GetMapping(path = "/items1", params = "version=1")
+	@GetMapping(path = "v1/items")
 	public String getAllItemsInCart(@RequestParam String customerId) {
 		System.out.println("@!@!#@!# getAllItemsInCart :" + customerId);
 		logger.debug(" Start: Getting all products.... ");
@@ -42,7 +42,7 @@ public class ShoppingCartRestCtrl {
 	 * 
 	 * @return
 	 */
-	@GetMapping(path = "/items1", params = "version=2")
+	@GetMapping(path = "v2/items")
 	public int getAllItemsInCartCount() {
 		logger.debug(" Start: getAllItemsSorted .... ");
 		int count = cartService.getProductsCount();
@@ -59,7 +59,7 @@ public class ShoppingCartRestCtrl {
 
 	@PostMapping("/cart/{id}/item")
 	public String addItemToCart(@PathVariable int id, @RequestBody Item item) {
-		System.out.println("#$@#$@#$  addItemToCart id ="+id);
+		System.out.println("#$@#$@#$  addItemToCart id =" + id);
 		Cart cart = cartService.getCartById(id); // TODO null check
 		System.out.println(" cart :" + cart);
 		item.setCart(cart);
