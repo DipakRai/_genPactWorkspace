@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import io.mulshankar13.model.Cart;
 import io.mulshankar13.model.Customer;
 import io.mulshankar13.model.Item;
 
@@ -24,12 +25,19 @@ public class CartService {
 	private ItemRepository itemRepository;
 	
 	@Autowired
+	private CartRepository cartRepository;
+	
+	@Autowired
 	private CustomerRepository customerRepository;
 
 	public String getItemsInCart() {
 		List<Item> items = (List<Item>) itemRepository.findAll();
 		String itemsJson =gson.toJson(items);
 		return itemsJson;
+	}
+	
+	public Cart getCartById(long id) {
+		return cartRepository.getOne(id);
 	}
 	
 	public int getProductsCount() {
@@ -58,6 +66,14 @@ public class CartService {
 		List<Item> items = (List<Item>) itemRepository.findAll();
 		String itemsJson =gson.toJson(items);
 		return itemsJson;
+	}
+
+	public String addItemToCart(Item item) {
+		Item savedItem = itemRepository.save(item);
+		System.out.println(" @#$#@$ savedItem :"+savedItem);
+		String itemsJson =gson.toJson(savedItem);
+		return itemsJson;
+		
 	}
 
 }

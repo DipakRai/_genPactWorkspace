@@ -47,7 +47,7 @@ public class Item implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_order__id")
 	private CartOrder cartOrder;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart__id")
 	private Cart cart;
@@ -63,6 +63,14 @@ public class Item implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public String getName() {
